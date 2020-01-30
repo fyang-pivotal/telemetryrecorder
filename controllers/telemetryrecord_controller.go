@@ -26,10 +26,12 @@ type TelemetryRecordReconciler struct {
 // +kubebuilder:rbac:groups=run.tanzu.vmware.com,resources=telemetryrecords/status,verbs=get;update;patch
 
 func (r *TelemetryRecordReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
-	_ = context.Background()
-	_ = r.Log.WithValues("telemetryrecord", req.NamespacedName)
+	ctx := context.Background()
+	log := r.Log.WithValues("telemetryrecord", req.NamespacedName)
 
-	// your logic here
+	var telemetryRecord runtanzuv1alpha1.TelemetryRecord
+	r.Get(ctx, req.NamespacedName, &telemetryRecord)
+	log.Info("Getting TelemetryRecord request", "Telemetry Record", telemetryRecord)
 
 	return ctrl.Result{}, nil
 }

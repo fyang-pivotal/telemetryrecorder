@@ -1,7 +1,13 @@
 apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TelemetryRecord
 metadata:
-  name: telemetryrecord-sample
+  name: logsink-telemetry-record
 spec:
-  # Add fields here
-  foo: bar
+  Apigroup: pksapi.io
+  ApiVersion: betav1
+  ResourceName: LogSink
+  Namespaced: true
+  Fields:
+    - type
+    - enable_tls
+    - insecure_skip_verify

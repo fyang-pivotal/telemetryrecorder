@@ -34,9 +34,17 @@ spec:
         spec:
           description: TelemetryRecordSpec defines the desired state of TelemetryRecord
           properties:
-            foo:
-              description: Foo is an example field of TelemetryRecord. Edit TelemetryRecord_types.go
-                to remove/update
+            apiGroup:
+              type: string
+            apiVersion:
+              type: string
+            fields:
+              items:
+                type: string
+              type: array
+            namespaced:
+              type: string
+            resourceName:
               type: string
           type: object
         status:

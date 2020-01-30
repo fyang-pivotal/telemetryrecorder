@@ -16,8 +16,11 @@ type TelemetryRecordSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of TelemetryRecord. Edit TelemetryRecord_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	Apigroup     string   `json:"apiGroup,omitempty"`
+	ApiVersion   string   `json:"apiVersion,omitempty"`
+	ResourceName string   `json:"resourceName,omitempty"`
+	Namespaced   string   `json:"namespaced,omitempty"`
+	Fields       []string `json:"fields,omitempty"`
 }
 
 // TelemetryRecordStatus defines the observed state of TelemetryRecord
