@@ -1,0 +1,7 @@
+apiVersion: run.tanzu.vmware.com/v1alpha1
+kind: TelemetryRecord
+metadata:
+  name: telemetryrecord-sample
+spec:
+  # Add fields here
+  foo: bar

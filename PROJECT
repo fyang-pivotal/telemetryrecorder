@@ -1,0 +1,7 @@
+domain: vmware.com
+repo: github.com/pivotal/telemetryrecorder
+resources:
+- group: run.tanzu
+  kind: TelemetryRecord
+  version: v1alpha1
+version: "2"
