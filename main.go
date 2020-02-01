@@ -6,6 +6,7 @@ package main
 
 import (
 	"flag"
+	"k8s.io/client-go/dynamic"
 	"os"
 
 	runtanzuv1alpha1 "github.com/pivotal/telemetryrecorder/api/v1alpha1"
@@ -53,10 +54,13 @@ func main() {
 		os.Exit(1)
 	}
 
+	dClient, _ := dynamic.NewForConfig(ctrl.GetConfigOrDie())
+
 	if err = (&controllers.TelemetryRecordReconciler{
-		Client: mgr.GetClient(),
-		Log:    ctrl.Log.WithName("controllers").WithName("TelemetryRecord"),
-		Scheme: mgr.GetScheme(),
+		Client:        mgr.GetClient(),
+		Log:           ctrl.Log.WithName("controllers").WithName("TelemetryRecord"),
+		Scheme:        mgr.GetScheme(),
+		DynamicClient: dClient,
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "TelemetryRecord")
 		os.Exit(1)
