@@ -43,7 +43,7 @@ spec:
                 type: string
               type: array
             namespaced:
-              type: string
+              type: boolean
             resourceName:
               type: string
           type: object

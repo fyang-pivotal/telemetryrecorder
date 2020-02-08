@@ -3,11 +3,11 @@ kind: TelemetryRecord
 metadata:
   name: logsink-telemetry-record
 spec:
-  Apigroup: pksapi.io
-  ApiVersion: betav1
-  ResourceName: LogSink
-  Namespaced: true
-  Fields:
-    - type
-    - enable_tls
-    - insecure_skip_verify
+  apiGroup: pksapi.io
+  apiVersion: v1beta1
+  resourceName: logsinks
+  namespaced: true
+  fields:
+    - Host
+    - Port
+    - tls

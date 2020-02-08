@@ -16,10 +16,10 @@ type TelemetryRecordSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	Apigroup     string   `json:"apiGroup,omitempty"`
+	ApiGroup     string   `json:"apiGroup,omitempty"`
 	ApiVersion   string   `json:"apiVersion,omitempty"`
 	ResourceName string   `json:"resourceName,omitempty"`
-	Namespaced   string   `json:"namespaced,omitempty"`
+	Namespaced   bool     `json:"namespaced,omitempty"`
 	Fields       []string `json:"fields,omitempty"`
 }
 
