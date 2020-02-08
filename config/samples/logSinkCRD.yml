@@ -1,0 +1,79 @@
+# Copyright 2018 The Knative Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: logsinks.pksapi.io
+  labels:
+    logs: "true"
+    safeToDelete: "true"
+spec:
+  group: pksapi.io
+  version: v1beta1
+  versions:
+    - name: v1beta1
+      served: true
+      storage: true
+  scope: Namespaced
+  subresources:
+    status: {}
+  names:
+    plural: logsinks
+    singular: logsink
+    kind: LogSink
+  validation:
+    openAPIV3Schema:
+      properties:
+        spec:
+          required:
+          - type
+          properties:
+            port:
+              type: integer
+            type:
+              type: string
+            host:
+              type: string
+            enable_tls:
+              type: boolean
+            insecure_skip_verify:
+              type: boolean
+            output_properties:
+              type: object
+  additionalPrinterColumns:
+    - name: Type
+      JSONPath: .spec.type
+      type: string
+    - name: Host
+      JSONPath: .spec.host
+      type: string
+    - name: URL
+      JSONPath: .spec.url
+      type: string
+    - name: Port
+      JSONPath: .spec.port
+      type: integer
+    - name: TLS
+      JSONPath: .spec.enable_tls
+      type: boolean
+    - name: Insecure
+      JSONPath: .spec.insecure_skip_verify
+      type: boolean
+      description: |
+        Accept any certificate presented by the server and any host name in
+        that certificate.
+    - JSONPath: .metadata.creationTimestamp
+      name: Age
+      type: date
